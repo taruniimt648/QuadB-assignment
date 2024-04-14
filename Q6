@@ -1,0 +1,30 @@
+//Implement a function that finds the longest common prefix of a given set of strings.
+fn longest_common_prefix(strings: &[String]) -> String {
+    if strings.is_empty() {
+        return String::new();
+    }
+    
+    let mut prefix = String::new();
+    
+    for (i, char) in strings[0].chars().enumerate() {
+        for string in strings.iter().skip(1) {
+            match string.chars().nth(i) {
+                Some(c) if c == char => continue,
+                _ => return prefix,
+            }
+        }
+        prefix.push(char);
+    }
+    
+    prefix
+}
+
+fn main() {
+    let strings = vec![
+        String::from("flower"),
+        String::from("flow"),
+        String::from("flight"),
+    ];
+    let lcp = longest_common_prefix(&strings);
+    println!("Longest Common Prefix: {}", lcp);
+}
