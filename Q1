@@ -1,0 +1,8 @@
+// Implement a function that checks whether a given string is a palindrome or not.
+fn is_palindrome(text: &str) -> bool {
+  text.chars()
+     .filter(|c| c.is_alphanumeric())
+     .rev()
+     .zip(text.chars().filter(|c| c.is_alphanumeric()))
+     .all(|(a, b)| a.eq_ignore_ascii_case(&b)) // Borrow b using &b
+}
